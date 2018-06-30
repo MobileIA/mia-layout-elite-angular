@@ -20,7 +20,10 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@mobileia/authentication": "0.0.12",
+    "@mobileia/core": "0.0.6",
     "@ng-bootstrap/ng-bootstrap": "^2.2.0",
+    "@ngx-pwa/local-storage": "^6.0.0-rc.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
