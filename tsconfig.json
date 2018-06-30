@@ -15,6 +15,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@mobileia/layout-elite": [
+        "dist/mobileia/layout-elite"
+      ],
+      "@mobileia/layout-elite/*": [
+        "dist/mobileia/layout-elite/*"
+      ]
+    }
   }
 }
