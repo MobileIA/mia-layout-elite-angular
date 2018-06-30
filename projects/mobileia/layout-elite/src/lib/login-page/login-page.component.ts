@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '@mobileia/authentication';
 
 @Component({
-  selector: 'mia-login-page',
+  selector: 'mia-layout-elite-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })

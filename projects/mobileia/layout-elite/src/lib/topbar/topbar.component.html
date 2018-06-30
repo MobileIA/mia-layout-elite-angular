@@ -1,0 +1,68 @@
+<!-- ============================================================== -->
+<!-- Topbar header - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<header class="topbar">
+    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+        <!-- ============================================================== -->
+        <!-- Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">
+                <!-- Logo icon --><b>
+                          <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                          <!-- Dark Logo icon -->
+                    <img [src]="logoIconDark" alt="homepage" class="dark-logo">
+                    <!-- Light Logo icon -->
+                    <img [src]="logoIcon" alt="homepage" class="light-logo">
+                      </b>
+                <!--End Logo icon -->
+                <!-- Logo text -->
+                <span>
+                       <!-- dark Logo text -->
+                 <img [src]="logoTextDark" alt="homepage" class="dark-logo">
+                 <!-- Light Logo text -->    
+                 <img [src]="logoText" class="light-logo" alt="homepage">
+                </span>
+            </a>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-collapse">
+            <ul class="navbar-nav mr-auto"></ul>
+            <!-- ============================================================== -->
+            <!-- User profile and search -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav my-lg-0">
+                <!-- ============================================================== -->
+                <!-- User Profile -->
+                <!-- ============================================================== -->
+                <li ngbDropdown class="nav-item dropdown u-pro" placement="bottom-right">
+                    <a ngbDropdownToggle class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/images/user/1.jpg" alt="user" class=""> <span class="hidden-md-down"> {{ currentUser.firstname }} &nbsp;<i class="fa fa-angle-down"></i></span>
+                    </a>
+                    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right animated flipInY">
+                        <!-- text-->
+                        <a (click)="clickItemMenu(1)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                        <!-- text-->
+                        <a (click)="clickItemMenu(2)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
+                        <!-- text-->
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
+                        <!-- text-->
+                        <div class="dropdown-divider"></div>
+                        <!-- text-->
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                        <!-- text-->
+                        <div class="dropdown-divider"></div>
+                        <!-- text-->
+                        <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                        <!-- text-->
+                    </div>
+                </li>
+                <!-- ============================================================== -->
+                <!-- End User Profile -->
+                <!-- ============================================================== -->
+            </ul>
+        </div>
+    </nav>
+</header>
