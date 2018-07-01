@@ -9,6 +9,7 @@ npm install @mobileia/layout-elite --save
 ```
 2. Importar modulo:
 ```js
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutEliteModule } from '@mobileia/layout-elite';
 
 @NgModule({
@@ -19,12 +20,35 @@ import { LayoutEliteModule } from '@mobileia/layout-elite';
     BrowserModule,
     RouterModule,
     AppRoutingModule,
+    NgbModule.forRoot(),
     LayoutEliteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+```
+3. Incluir para que procese los SCSS:
+```json
+"schematics": {
+    "@schematics/angular:component": {
+        "styleext": "scss"
+    }
+},
+```
+4. Agregar Assets, abrir archivo: angular.json:
+```js
+ "styles": [
+    "node_modules/@mobileia/layout-elite/assets/bootstrap-4.1.1-dist/css/bootstrap.min.css",
+    "node_modules/@mobileia/layout-elite/assets/template-elite/scss/style.scss",
+    "src/styles.css"
+],
+```
+5. Agregar clase al body para activar el template:
+```html
+<body class="skin-default fixed-layout">
+  ...
+</body>
 ```
 
 ## Como usar pantalla de login:

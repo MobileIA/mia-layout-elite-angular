@@ -1,0 +1,4 @@
+{
+    "entry": "./projects/mobileia/layout-elite/src/assets/template-elite/scss/style.scss",
+    "dest": "./dist/lib1/assets/style/styles.scss"
+}
