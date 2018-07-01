@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { TopbarComponent } from './topbar/topbar.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
     NgbModule,
     AuthenticationModule
   ],
-  declarations: [LayoutEliteComponent, LoginPageComponent, TopbarComponent],
-  exports: [LayoutEliteComponent, TopbarComponent]
+  declarations: [LayoutEliteComponent, LoginPageComponent, TopbarComponent, SidebarComponent],
+  exports: [LayoutEliteComponent, TopbarComponent, SidebarComponent]
 })
 export class LayoutEliteModule { }

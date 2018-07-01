@@ -37,14 +37,37 @@ export class AppComponent {
     icon: 'fa fa-power-off'
   }];
 
+  sidebarMenu = [
+    {
+      is_group: true,
+      title: '--- MENU PRINCIPAL'
+    },
+    {
+    id: 1,
+    title: 'Dashboard',
+    icon: 'fas fa-tachometer-alt',
+    is_active: true
+  },
+  {
+    id: 2,
+    title: 'Ejemplo',
+    icon: 'fas fa-tachometer-alt',
+    budge: '4'
+  }
+];
+
   constructor(private authService : AuthenticationService,
     private router: Router) { }
 
-  public clickMenu(id : number){
+  public clickTopbarMenu(id : number){
     console.log("Menu: " + id);
     if(id == 4){
       this.logout();
     }
+  }
+
+  public clickSidebarMenu(id: number){
+    console.log("Sidebar Menu: " + id);
   }
 
   /**

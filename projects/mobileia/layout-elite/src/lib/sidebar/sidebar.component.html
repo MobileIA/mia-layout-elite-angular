@@ -1,0 +1,16 @@
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <div *ngFor="let item of menuItems">
+                    <li *ngIf="item.is_group" class="nav-small-cap">{{ item.title }}</li>
+                    <li *ngIf="!item.is_group" [ngClass]="{'active':item.is_active == true}"><a (click)="clickItemMenu(item.id)" class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="{{ item.icon }}"></i><span class="hide-menu"> {{ item.title }} <span *ngIf="item.budge" class="badge badge-pill badge-cyan ml-auto" style="float:right">{{ item.budge }}</span></span></a></li>
+                </div>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
