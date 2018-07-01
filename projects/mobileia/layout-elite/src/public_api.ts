@@ -5,3 +5,4 @@
 export * from './lib/layout-elite.service';
 export * from './lib/layout-elite.component';
 export * from './lib/layout-elite.module';
+export * from './lib/login-page/login-page.component';
