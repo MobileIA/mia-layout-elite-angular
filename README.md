@@ -4,6 +4,7 @@ Libreria para utilizar facilmente el Template EliteAdmin.
 ## Como instalar
 1. Instalar libreria en el proyecto:
 ```bash
+npm install @ng-bootstrap/ng-bootstrap --save
 npm install @mobileia/layout-elite --save
 ```
 2. Importar modulo:

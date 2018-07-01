@@ -22,6 +22,6 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     AuthenticationModule
   ],
   declarations: [LayoutEliteComponent, LoginPageComponent, TopbarComponent, SidebarComponent, PageHeaderComponent],
-  exports: [LayoutEliteComponent, TopbarComponent, SidebarComponent, PageHeaderComponent]
+  exports: [LayoutEliteComponent, TopbarComponent, SidebarComponent, PageHeaderComponent, LoginPageComponent]
 })
 export class LayoutEliteModule { }
