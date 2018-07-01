@@ -13,6 +13,7 @@ export class TopbarComponent implements OnInit {
   @Input() logoIcon : String = "";
   @Input() logoTextDark : String = "";
   @Input() logoText : String = "";
+  @Input() menuItems = [];
   @Output() clickMenu = new EventEmitter();
 
   currentUser : MIAUser = new MIAUser();

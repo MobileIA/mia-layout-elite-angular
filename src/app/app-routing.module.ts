@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from 'projects/mobileia/layout-elite/src/lib/login-page/login-page.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ExampleComponent } from './example/example.component';
 
 const routes:Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -22,7 +23,7 @@ const routes:Routes = [
   },
   { 
     path: 'index',
-    component: LoginPageComponent
+    component: ExampleComponent
   }
 ];
 

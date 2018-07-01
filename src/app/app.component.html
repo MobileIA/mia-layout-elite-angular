@@ -1,4 +1,4 @@
 <div id="main-wrapper">
-    <mia-layout-elite-topbar (clickMenu)="clickMenu($event)" [logoText]="'assets/images/logo/eliteadmin-small-text.png'" [logoTextDark]="'assets/images/logo/logo-text.png'" [logoIcon]="'assets/images/logo/logo-light-icon.png'" [logoIconDark]="'assets/images/logo/logo-icon.png'"></mia-layout-elite-topbar>
+    <mia-layout-elite-topbar (clickMenu)="clickMenu($event)" [menuItems]="topbarMenu" [logoText]="'assets/images/logo/eliteadmin-small-text.png'" [logoTextDark]="'assets/images/logo/logo-text.png'" [logoIcon]="'assets/images/logo/logo-light-icon.png'" [logoIconDark]="'assets/images/logo/logo-icon.png'"></mia-layout-elite-topbar>
     <router-outlet></router-outlet>
 </div>

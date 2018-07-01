@@ -42,22 +42,12 @@
                         <img src="assets/images/user/1.jpg" alt="user" class=""> <span class="hidden-md-down"> {{ currentUser.firstname }} &nbsp;<i class="fa fa-angle-down"></i></span>
                     </a>
                     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right animated flipInY">
-                        <!-- text-->
-                        <a (click)="clickItemMenu(1)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
-                        <!-- text-->
-                        <a (click)="clickItemMenu(2)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
-                        <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
-                        <!-- text-->
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                        <!-- text-->
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->
-                        <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
-                        <!-- text-->
+                        <div *ngFor="let item of menuItems">
+                            <a *ngIf="!item.separator" href="javascript:void(0)" (click)="clickItemMenu(item.id)" class="dropdown-item"><i class="{{ item.icon }}"></i> {{ item.title }}</a>
+                            <div *ngIf="item.separator" class="dropdown-divider"></div>
+                        </div>
                     </div>
+
                 </li>
                 <!-- ============================================================== -->
                 <!-- End User Profile -->

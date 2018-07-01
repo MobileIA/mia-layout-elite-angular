@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { LayoutEliteModule } from 'projects/mobileia/layout-elite/src/public_api';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ExampleComponent } from './example/example.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ExampleComponent
   ],
   imports: [
     BrowserModule,
