@@ -15,7 +15,15 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  public clickItemMenu(id : number){
-    this.clickMenu.emit(id);
+  public clickItemMenu(item){
+    this.cleanActive();
+    item.is_active = true;
+    this.clickMenu.emit(item.id);
+  }
+
+  cleanActive(){
+    this.menuItems.forEach(element => {
+      element.is_active = false;
+    });
   }
 }
