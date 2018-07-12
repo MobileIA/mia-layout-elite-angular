@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'mia-layout-elite-topbar',
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.css']
+  styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent implements OnInit {
 
