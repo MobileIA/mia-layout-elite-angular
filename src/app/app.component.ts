@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
+  isLogged = false;
 
   topbarMenu = [{
     id: 1,
@@ -57,17 +58,20 @@ export class AppComponent {
 ];
 
   constructor(private authService : AuthenticationService,
-    private router: Router) { }
+    private router: Router) { 
+      this.authService.isLoggedBehavior().subscribe(logged => {
+        this.isLogged = logged;
+      });
+    }
 
   public clickTopbarMenu(id : number){
-    console.log("Menu: " + id);
     if(id == 4){
       this.logout();
     }
   }
 
   public clickSidebarMenu(id: number){
-    console.log("Sidebar Menu: " + id);
+    
   }
 
   /**
@@ -75,6 +79,7 @@ export class AppComponent {
    */
   public logout() {
     this.authService.signOut();
-    this.router.navigate(['/']);  
+    this.router.navigate(['/login']); 
+    this.isLogged = false; 
   }
 }

@@ -24,7 +24,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit() {
     this.currentUser.firstname = "Anonimo";
     // Buscar usuario logueado
-    this.authService.getCurrentUser(user => {
+    this.authService.getCurrentUser().subscribe(user => {
       if(user == null){
         return;
       }

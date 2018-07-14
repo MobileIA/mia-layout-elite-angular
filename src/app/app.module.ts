@@ -7,6 +7,7 @@ import { LayoutEliteModule } from 'projects/mobileia/layout-elite/src/public_api
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExampleComponent } from './example/example.component';
+import { AuthenticationModule } from '../../node_modules/@mobileia/authentication';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ExampleComponent } from './example/example.component';
     RouterModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    LayoutEliteModule
+    LayoutEliteModule,
+    AuthenticationModule.forRoot({ apiKey: "16"}),
   ],
   providers: [],
   bootstrap: [AppComponent]

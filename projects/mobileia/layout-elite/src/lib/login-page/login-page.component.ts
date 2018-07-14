@@ -28,6 +28,15 @@ export class LoginPageComponent implements OnInit {
     // Guardar parametros enviados
     this.route.data.subscribe(params => {
       this.routeSuccess = params.success_route;
+      this.observableLogged();
+    });
+  }
+
+  observableLogged(){
+    this.authService.isLoggedBehavior().subscribe(logged => {
+      if(logged){
+        this.router.navigateByUrl('/' + this.routeSuccess);
+      }
     });
   }
 
@@ -48,7 +57,6 @@ export class LoginPageComponent implements OnInit {
     this.authService.signInWithEmailAndPassword(email, password, data => {
       console.log(data);
       if(data.success){
-        console.log("llego");
         this.router.navigateByUrl('/' + this.routeSuccess);
       }
 
