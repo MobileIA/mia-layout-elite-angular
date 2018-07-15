@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '@mobileia/authentication';
 import { Router } from '@angular/router';
+import { LayoutMenuService } from 'projects/mobileia/layout-elite/src/public_api';
 
 @Component({
   selector: 'app-root',
@@ -47,7 +48,7 @@ export class AppComponent {
     id: 1,
     title: 'Dashboard',
     icon: 'fas fa-tachometer-alt',
-    is_active: true
+    is_active: false
   },
   {
     id: 2,
@@ -58,9 +59,15 @@ export class AppComponent {
 ];
 
   constructor(private authService : AuthenticationService,
-    private router: Router) { 
+    private router: Router,
+  private menuService : LayoutMenuService) { 
+
       this.authService.isLoggedBehavior().subscribe(logged => {
         this.isLogged = logged;
+      });
+
+      this.menuService.getSidebarMenuObservable().subscribe(id => {
+        this.clickSidebarMenu(id);
       });
     }
 
@@ -71,7 +78,7 @@ export class AppComponent {
   }
 
   public clickSidebarMenu(id: number){
-    
+    console.log("Sidebar Menu: " + id);
   }
 
   /**

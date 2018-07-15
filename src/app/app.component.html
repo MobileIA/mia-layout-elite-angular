@@ -1,7 +1,7 @@
 <div id="main-wrapper">
     <mia-layout-elite-topbar *ngIf="isLogged" (clickMenu)="clickTopbarMenu($event)" [menuItems]="topbarMenu" [logoText]="'assets/images/logo/eliteadmin-small-text.png'" [logoTextDark]="'assets/images/logo/logo-text.png'" [logoIcon]="'assets/images/logo/logo-light-icon.png'"
         [logoIconDark]="'assets/images/logo/logo-icon.png'"></mia-layout-elite-topbar>
-    <mia-layout-elite-sidebar *ngIf="isLogged" (clickMenu)="clickSidebarMenu($event)" [menuItems]="sidebarMenu"></mia-layout-elite-sidebar>
+    <mia-layout-elite-sidebar *ngIf="isLogged" [menuItems]="sidebarMenu"></mia-layout-elite-sidebar>
 
     <div class="" [ngClass]="{'page-wrapper': isLogged}">
         <div class="container-fluid">
