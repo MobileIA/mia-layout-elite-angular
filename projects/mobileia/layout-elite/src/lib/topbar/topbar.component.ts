@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
 import { AuthenticationService, MIAUser } from '@mobileia/authentication';
 import { Router } from '@angular/router';
 import { LayoutMenuService } from '../services/layout-menu.service';
@@ -15,12 +15,14 @@ export class TopbarComponent implements OnInit {
   @Input() logoTextDark : String = "";
   @Input() logoText : String = "";
   @Input() menuItems = [];
+  isMiniSidebar = false;
 
   currentUser : MIAUser = new MIAUser();
 
   constructor(private authService : AuthenticationService,
     private router: Router, 
-    private menuService : LayoutMenuService) { }
+    private menuService : LayoutMenuService,
+    private renderer: Renderer2) { }
 
   ngOnInit() {
     this.currentUser.firstname = "Anonimo";
@@ -35,5 +37,28 @@ export class TopbarComponent implements OnInit {
 
   public clickItemMenu(id : number){
     this.menuService.emitTopbarClick(id);
+  }
+
+  public clickOpenSidebar(){
+    // Obtener body
+    const body = document.getElementsByTagName('body')[0];
+    // recorremos clases
+    for(var i = 0; i < body.classList.length; i++){
+      if(body.classList[i] == 'show-sidebar'){
+        this.renderer.removeClass(document.body, 'show-sidebar');
+        return;
+      }
+    }
+    this.renderer.addClass(document.body, 'show-sidebar');
+  }
+
+  public onResize(event) {
+    if(event.target.innerWidth < 1170){
+      this.isMiniSidebar = true;
+      this.renderer.addClass(document.body, 'mini-sidebar');
+    }else{
+      this.isMiniSidebar = false;
+      this.renderer.removeClass(document.body, 'mini-sidebar');
+    }
   }
 }
