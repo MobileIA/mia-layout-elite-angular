@@ -69,9 +69,14 @@ export class AppComponent {
       this.menuService.getSidebarMenuObservable().subscribe(id => {
         this.clickSidebarMenu(id);
       });
+
+      this.menuService.getTopbarMenuObservable().subscribe(id => {
+        this.clickTopbarMenu(id);
+      });
     }
 
   public clickTopbarMenu(id : number){
+    console.log("Topbar menu: " + id);
     if(id == 4){
       this.logout();
     }

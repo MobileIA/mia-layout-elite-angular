@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'mia-layout-elite',
+  selector: 'mia-layout-elite-old',
   templateUrl: './layout-elite.component.html',
   styles: []
 })

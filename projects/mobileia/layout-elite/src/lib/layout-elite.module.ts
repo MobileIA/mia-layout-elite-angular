@@ -10,6 +10,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     NgbModule,
     AuthenticationModule
   ],
-  declarations: [LayoutEliteComponent, LoginPageComponent, TopbarComponent, SidebarComponent, PageHeaderComponent],
-  exports: [LayoutEliteComponent, TopbarComponent, SidebarComponent, PageHeaderComponent, LoginPageComponent]
+  declarations: [LayoutEliteComponent, LoginPageComponent, TopbarComponent, SidebarComponent, PageHeaderComponent, LayoutComponent],
+  exports: [LayoutEliteComponent, TopbarComponent, SidebarComponent, PageHeaderComponent, LoginPageComponent, LayoutComponent]
 })
 export class LayoutEliteModule { }

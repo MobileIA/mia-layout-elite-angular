@@ -62,7 +62,102 @@ export class AppModule { }
 ```
 2. Reemplazar la variable "success_route", por la ruta a donde desea que se rediriga una vez logueado correctamente.
 
+## Como usar Layout:
+1. Generar componente:
+```js
+export class AppComponent {
+  title = 'app';
+  isLogged = false;
 
+  topbarMenu = [{
+    id: 1,
+    title: 'Mi perfil',
+    icon: ''
+  },
+  {
+    id: 2,
+    title: 'Ejemplo 2',
+    icon: ''
+  },
+  {
+    separator: true
+  },
+  {
+    id: 3,
+    title: 'Mi perfil',
+    icon: 'fa fa-user'
+  },
+  {
+    separator: true
+  },
+  {
+    id: 4,
+    title: 'Salir',
+    icon: 'fa fa-power-off'
+  }];
+
+  sidebarMenu = [
+    {
+      is_group: true,
+      title: '--- MENU PRINCIPAL'
+    },
+    {
+    id: 1,
+    title: 'Dashboard',
+    icon: 'fas fa-tachometer-alt',
+    is_active: false
+  },
+  {
+    id: 2,
+    title: 'Ejemplo',
+    icon: 'fas fa-tachometer-alt',
+    budge: '4'
+  }
+];
+
+  constructor(private authService : AuthenticationService,
+    private router: Router,
+  private menuService : LayoutMenuService) { 
+
+      this.authService.isLoggedBehavior().subscribe(logged => {
+        this.isLogged = logged;
+      });
+
+      this.menuService.getSidebarMenuObservable().subscribe(id => {
+        this.clickSidebarMenu(id);
+      });
+
+      this.menuService.getTopbarMenuObservable().subscribe(id => {
+        this.clickTopbarMenu(id);
+      });
+    }
+
+  public clickTopbarMenu(id : number){
+    console.log("Topbar menu: " + id);
+    if(id == 4){
+      this.logout();
+    }
+  }
+
+  public clickSidebarMenu(id: number){
+    console.log("Sidebar Menu: " + id);
+  }
+
+  /**
+   * logout
+   */
+  public logout() {
+    this.authService.signOut();
+    this.router.navigate(['/login']); 
+    this.isLogged = false; 
+  }
+}
+```
+2. Agregar HTML:
+```html
+<mia-layout-elite [isLogged]="isLogged" [topbarMenu]="topbarMenu" [sidebarMenu]="sidebarMenu" [logoText]="'assets/images/logo/eliteadmin-small-text.png'" [logoTextDark]="'assets/images/logo/logo-text.png'" [logoIcon]="'assets/images/logo/logo-light-icon.png'"
+    [logoIconDark]="'assets/images/logo/logo-icon.png'"></mia-layout-elite>
+```
 
 
 

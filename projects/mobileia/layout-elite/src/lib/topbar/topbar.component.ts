@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService, MIAUser } from '@mobileia/authentication';
 import { Router } from '@angular/router';
+import { LayoutMenuService } from '../services/layout-menu.service';
 
 @Component({
   selector: 'mia-layout-elite-topbar',
@@ -14,12 +15,12 @@ export class TopbarComponent implements OnInit {
   @Input() logoTextDark : String = "";
   @Input() logoText : String = "";
   @Input() menuItems = [];
-  @Output() clickMenu = new EventEmitter();
 
   currentUser : MIAUser = new MIAUser();
 
   constructor(private authService : AuthenticationService,
-    private router: Router) { }
+    private router: Router, 
+    private menuService : LayoutMenuService) { }
 
   ngOnInit() {
     this.currentUser.firstname = "Anonimo";
@@ -33,14 +34,6 @@ export class TopbarComponent implements OnInit {
   }
 
   public clickItemMenu(id : number){
-    this.clickMenu.emit(id);
-  }
-
-  /**
-   * logout
-   */
-  public logout() {
-    this.authService.signOut();
-    this.router.navigate(['/']);  
+    this.menuService.emitTopbarClick(id);
   }
 }
