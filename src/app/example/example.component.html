@@ -1,8 +1,27 @@
-<mia-layout-elite-page-header [title]="'Pagina de ejemplo'"></mia-layout-elite-page-header>
-<p>
-    example works!
-</p>
-<h2>Prueba</h2>
-<h2>Prueba</h2>
-<h2>Prueba</h2>
-<h2>Prueba</h2>
+<mia-layout-elite-page-header [title]="'Eventos'"></mia-layout-elite-page-header>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Listado de eventos</h4>
+            <h6 class="card-subtitle">Aqui vera todos los eventos del sistema.</h6>
+            <div class="table-responsive">
+                <mia-layout-elite-table [th]="[{title: 'ID', filter: 'id'}, {title: 'Titulo', filter: 'title'}, {title: 'Usuario', filter: 'firstname'}, {title: 'Acciones', class: 'text-nowrap'}]">
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>titulo del evento</td>
+                            <td>Matias</td>
+                            <td class="text-nowrap">
+                                <a href="/backend/ticket/list/35" data-toggle="tooltip" data-original-title="Lista digital"> <i class="fa fa-users m-r-10"></i> </a>
+                                <!--<a routerLink="/sections/{{ item.id }}" placement="top" ngbTooltip="Secciones"> <i class="fa fa-pencil"></i> Secciones</a>
+                                    <a href="javascript:void(0)" placement="top" ngbTooltip="Editar"> <i class="fa fa-pencil"></i> Editar</a>
+                                    <a href="javascript:void(0)" placement="top" ngbTooltip="Eliminar"> <i class="fa fa-close"></i> Eliminar</a>-->
+                            </td>
+                        </tr>
+                    </tbody>
+                </mia-layout-elite-table>
+            </div>
+        </div>
+    </div>
+</div>

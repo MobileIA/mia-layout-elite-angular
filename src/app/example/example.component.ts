@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutMenuService } from 'projects/mobileia/layout-elite/src/public_api';
+import { LayoutMenuService, LayoutTableService } from 'projects/mobileia/layout-elite/src/public_api';
 
 @Component({
   selector: 'app-example',
@@ -8,12 +8,15 @@ import { LayoutMenuService } from 'projects/mobileia/layout-elite/src/public_api
 })
 export class ExampleComponent implements OnInit {
 
-  constructor(private menuService : LayoutMenuService) {
+  constructor(private menuService : LayoutMenuService,
+    private tableService : LayoutTableService) {
     this.menuService.activatedSidebar(2);
    }
 
   ngOnInit() {
-    
+    this.tableService.getFilterObservable().subscribe(filter => {
+      console.log(filter);
+    });
   }
 
   ngAfterViewInit() {

@@ -1,0 +1,14 @@
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th *ngFor="let item of th" (click)="onClickFilter(item)" class="{{ item.class }}" [ngStyle]="{'cursor':item.filter != undefined ? 'pointer' : 'normal' }">
+                {{ item.title }}
+                <i *ngIf="item.filter != undefined && filter.title == item.filter && filter.asc == 1" class="fa fa-long-arrow-alt-up"></i>
+                <i *ngIf="item.filter != undefined && filter.title == item.filter  && filter.asc == 0" class="fa fa-long-arrow-alt-down"></i>
+            </th>
+        </tr>
+    </thead>
+
+    <ng-content select="tbody"></ng-content>
+</table>
