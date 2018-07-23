@@ -27,15 +27,23 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     // Guardar parametros enviados
     this.route.data.subscribe(params => {
-      this.routeSuccess = params.success_route;
+      this.routeSuccess = "/" + params.success_route;
       this.observableLogged();
     });
+
+    this.route.paramMap.subscribe(params => {
+      var redirect = params.get('redirect');
+      if(redirect != '/' && redirect != ''){
+        this.routeSuccess = redirect;
+      }
+    });
+
   }
 
   observableLogged(){
     this.authService.isLoggedBehavior().subscribe(logged => {
       if(logged){
-        this.router.navigateByUrl('/' + this.routeSuccess);
+        this.router.navigateByUrl(this.routeSuccess + '');
       }
     });
   }

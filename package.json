@@ -21,7 +21,7 @@
         "@angular/platform-browser": "^6.0.9",
         "@angular/platform-browser-dynamic": "^6.0.9",
         "@angular/router": "^6.0.9",
-        "@mobileia/authentication": "0.0.18",
+        "@mobileia/authentication": "0.0.20",
         "@mobileia/core": "0.0.6",
         "@ng-bootstrap/ng-bootstrap": "^2.2.0",
         "@ngx-pwa/local-storage": "^6.0.0-rc.1",
