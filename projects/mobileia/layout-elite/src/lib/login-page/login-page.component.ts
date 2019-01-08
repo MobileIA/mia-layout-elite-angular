@@ -14,6 +14,14 @@ export class LoginPageComponent implements OnInit {
    * Almacena la ruta cuando se loguea correctamente
    */
   private routeSuccess: String;
+  /**
+   * Determinar si en el ingreso debe validar el Rol del usuario.
+   */
+  private verifyRole = false;
+  /**
+   * Rol que tiene permisos para ingresar
+   */
+  private withRole = 0;
 
   loginForm: FormGroup;
   loginMessageError = '';
@@ -29,6 +37,10 @@ export class LoginPageComponent implements OnInit {
     // Guardar parametros enviados
     this.route.data.subscribe(params => {
       this.routeSuccess = params.success_route;
+      if (params.verify_role) {
+        this.verifyRole = params.verify_role;
+        this.withRole = params.with_role;
+      }
       this.observableLogged();
     });
 
@@ -44,7 +56,7 @@ export class LoginPageComponent implements OnInit {
   observableLogged() {
     this.authService.isLoggedBehavior().subscribe(logged => {
       if (logged) {
-        this.router.navigateByUrl(this.routeSuccess + '');
+        this.router.navigateByUrl('/' + this.routeSuccess + '');
       }
     });
   }
@@ -67,10 +79,31 @@ export class LoginPageComponent implements OnInit {
     this.loginMessageError = '';
     this.authService.signInWithEmailAndPassword(email, password, data => {
       if (data.success) {
-        this.router.navigateByUrl('/' + this.routeSuccess);
+
+        if (this.isValidRole(data.response.role)) {
+          this.router.navigateByUrl('/' + this.routeSuccess);
+        } else {
+          this.loginMessageError = 'Usted no tiene permisos para registrarse';
+          this.authService.signOut();
+        }
+
       } else {
         this.loginMessageError = data.error.message;
       }
     });
+  }
+  /**
+   * Funcion que determinar si el usuario para ingresar necesita un rol especial
+   */
+  isValidRole(userRole: number): Boolean {
+    // Si no necesita verificar rol
+    if (!this.verifyRole) {
+      return true;
+    }
+    // Verificar si es el mismo rol
+    if (this.withRole == userRole) {
+      return true;
+    }
+    return false;
   }
 }

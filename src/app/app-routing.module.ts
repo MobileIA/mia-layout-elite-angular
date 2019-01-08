@@ -7,12 +7,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ExampleComponent } from './example/example.component';
 import { AuthGuard } from '@mobileia/authentication';
 
-const routes:Routes = [
+const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
-  { 
-    path: 'login', 
+  {
+    path: 'login',
     component: LoginPageComponent,
-    data: {"success_route" : "index"}
+    data: { 'success_route': 'index'/*, 'verify_role': true, 'with_role': 1*/ }
   },
   { 
     path: 'create', 

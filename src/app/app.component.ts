@@ -91,7 +91,7 @@ export class AppComponent {
    */
   public logout() {
     this.authService.signOut();
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/login']);
     this.isLogged = false; 
   }
 }
