@@ -13,13 +13,14 @@ export class LoginPageComponent implements OnInit {
   /**
    * Almacena la ruta cuando se loguea correctamente
    */
-  private routeSuccess : String;
+  private routeSuccess: String;
 
   loginForm: FormGroup;
+  loginMessageError = '';
 
-  constructor(private authService : AuthenticationService, 
-    private fb: FormBuilder, 
-    private route: ActivatedRoute, 
+  constructor(private authService: AuthenticationService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router) {
       this.buildForm();
      }
@@ -27,22 +28,22 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     // Guardar parametros enviados
     this.route.data.subscribe(params => {
-      this.routeSuccess = "/" + params.success_route;
+      this.routeSuccess = params.success_route;
       this.observableLogged();
     });
 
     this.route.paramMap.subscribe(params => {
-      var redirect = params.get('redirect');
-      if(redirect != '/' && redirect != ''){
+      const redirect = params.get('redirect');
+      if (redirect !== '/' && redirect !== '' && redirect !== null && redirect !== '%2F' && redirect !== '/login;redirect=%2F') {
         this.routeSuccess = redirect;
       }
     });
 
   }
 
-  observableLogged(){
+  observableLogged() {
     this.authService.isLoggedBehavior().subscribe(logged => {
-      if(logged){
+      if (logged) {
         this.router.navigateByUrl(this.routeSuccess + '');
       }
     });
@@ -61,13 +62,15 @@ export class LoginPageComponent implements OnInit {
     this.requestLogin(email, password);
   }
 
-  requestLogin(email : string, password : string) {
+  requestLogin(email: string, password: string) {
+    // Limpiar mensaje de error
+    this.loginMessageError = '';
     this.authService.signInWithEmailAndPassword(email, password, data => {
-      console.log(data);
-      if(data.success){
+      if (data.success) {
         this.router.navigateByUrl('/' + this.routeSuccess);
+      } else {
+        this.loginMessageError = data.error.message;
       }
-
     });
   }
 }
