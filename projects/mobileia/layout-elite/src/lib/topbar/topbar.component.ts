@@ -10,41 +10,42 @@ import { LayoutMenuService } from '../services/layout-menu.service';
 })
 export class TopbarComponent implements OnInit {
 
-  @Input() logoIconDark : String = "";
-  @Input() logoIcon : String = "";
-  @Input() logoTextDark : String = "";
-  @Input() logoText : String = "";
+  @Input() logoIconDark: String = '';
+  @Input() logoIcon: String = '';
+  @Input() logoTextDark: String = '';
+  @Input() logoText: String = '';
   @Input() menuItems = [];
   isMiniSidebar = false;
 
-  currentUser : MIAUser = new MIAUser();
+  currentUser: MIAUser = new MIAUser();
 
-  constructor(private authService : AuthenticationService,
-    private router: Router, 
-    private menuService : LayoutMenuService,
+  constructor(private authService: AuthenticationService,
+    private router: Router,
+    private menuService: LayoutMenuService,
     private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.currentUser.firstname = "Anonimo";
+    this.currentUser.firstname = 'Anonimo';
     // Buscar usuario logueado
     this.authService.getCurrentUser().subscribe(user => {
-      if(user == null){
+      if (user == null) {
         return;
       }
       this.currentUser = user;
     });
   }
 
-  public clickItemMenu(id : number){
+  public clickItemMenu(id: number) {
     this.menuService.emitTopbarClick(id);
   }
 
-  public clickOpenSidebar(){
+  public clickOpenSidebar() {
     // Obtener body
     const body = document.getElementsByTagName('body')[0];
     // recorremos clases
-    for(var i = 0; i < body.classList.length; i++){
-      if(body.classList[i] == 'show-sidebar'){
+    for (var i = 0; i < body.classList.length; i++) {
+      // tslint:disable-next-line:triple-equals
+      if (body.classList[i] == 'show-sidebar') {
         this.renderer.removeClass(document.body, 'show-sidebar');
         return;
       }
@@ -53,10 +54,21 @@ export class TopbarComponent implements OnInit {
   }
 
   public onResize(event) {
-    if(event.target.innerWidth < 1170){
+    if (event.target.innerWidth < 1170) {
       this.isMiniSidebar = true;
       this.renderer.addClass(document.body, 'mini-sidebar');
-    }else{
+    } else {
+      this.isMiniSidebar = false;
+      this.renderer.removeClass(document.body, 'mini-sidebar');
+    }
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterContentInit(): void {
+    if (window.innerWidth < 1170) {
+      this.isMiniSidebar = true;
+      this.renderer.addClass(document.body, 'mini-sidebar');
+    } else {
       this.isMiniSidebar = false;
       this.renderer.removeClass(document.body, 'mini-sidebar');
     }
