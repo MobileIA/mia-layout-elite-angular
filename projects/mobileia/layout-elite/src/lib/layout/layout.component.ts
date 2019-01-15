@@ -8,18 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LayoutComponent implements OnInit {
 
   title = 'app';
-  
+
   @Input() isLogged = false;
 
-  @Input() logoIconDark : String = "";
-  @Input() logoIcon : String = "";
-  @Input() logoTextDark : String = "";
-  @Input() logoText : String = "";
+  @Input() logoIconDark: String = '';
+  @Input() logoIcon: String = '';
+  @Input() logoTextDark: String = '';
+  @Input() logoText: String = '';
   @Input() topbarMenu = [];
   @Input() sidebarMenu = [];
-  
-  constructor() { 
 
+  constructor() {
   }
 
   ngOnInit() {

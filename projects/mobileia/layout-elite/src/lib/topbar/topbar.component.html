@@ -10,16 +10,12 @@
             <a class="navbar-brand" href="">
                 <!-- Logo icon --><b>
                           <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                          <!-- Dark Logo icon -->
-                    <img [src]="logoIconDark" alt="homepage" class="dark-logo">
                     <!-- Light Logo icon -->
-                    <img [src]="logoIcon" alt="homepage" class="light-logo">
+                    <img *ngIf="isMiniSidebar" [src]="logoIcon" alt="homepage" class="light-logo">
                       </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
                 <span>
-                       <!-- dark Logo text -->
-                 <img [src]="logoTextDark" alt="homepage" class="dark-logo">
                  <!-- Light Logo text -->    
                  <img *ngIf="!isMiniSidebar" [src]="logoText" class="light-logo" alt="homepage">
                 </span>
