@@ -12,18 +12,24 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
-    data: { 'success_route': 'index'/*, 'verify_role': true, 'with_role': 1*/ }
+    data: {
+      'success_route': 'index', /*, 'verify_role': true, 'with_role': 1*/
+      'image_background': 'assets/images/background/login-register.jpg',
+      'image_logo': 'assets/images/logo/logo-text.png',
+      'title_box': 'Promotores',
+      'button_color': 'btn-success'
+    }
   },
-  { 
-    path: 'create', 
+  {
+    path: 'create',
     component: ExampleComponent,
-    canActivate: [AuthGuard] 
+    canActivate: [AuthGuard]
   },
   {
     path: 'edit/:id',
     component: LoginPageComponent
   },
-  { 
+  {
     path: 'index',
     component: ExampleComponent,
     canActivate: [AuthGuard]

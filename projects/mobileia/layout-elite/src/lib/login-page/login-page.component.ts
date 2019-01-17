@@ -26,6 +26,12 @@ export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   loginMessageError = '';
 
+  /** Variables para personalizar el diseño */
+  designImageBackground = '';
+  designImageLogo = '';
+  designTitle = 'Ingresar';
+  designBtnColorClass = 'btn-info';
+
   constructor(private authService: AuthenticationService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -41,6 +47,8 @@ export class LoginPageComponent implements OnInit {
         this.verifyRole = params.verify_role;
         this.withRole = params.with_role;
       }
+      // Procesar variables del diseño
+      this.processCustomDesign(params);
       this.observableLogged();
     });
 
@@ -105,5 +113,20 @@ export class LoginPageComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  processCustomDesign(params) {
+    if (params.image_background) {
+      this.designImageBackground = params.image_background;
+    }
+    if (params.image_logo) {
+      this.designImageLogo = params.image_logo;
+    }
+    if (params.title_box) {
+      this.designTitle = params.title_box;
+    }
+    if (params.button_color) {
+      this.designBtnColorClass = params.button_color;
+    }
   }
 }
