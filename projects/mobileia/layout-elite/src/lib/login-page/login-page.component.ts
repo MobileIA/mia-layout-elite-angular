@@ -49,14 +49,15 @@ export class LoginPageComponent implements OnInit {
       }
       // Procesar variables del diseño
       this.processCustomDesign(params);
-      this.observableLogged();
     });
 
-    this.route.paramMap.subscribe(params => {
-      const redirect = params.get('redirect');
+    this.route.queryParams.subscribe(params => {
+      const redirect = params.redirect;
       if (redirect !== '/' && redirect !== '' && redirect !== null && redirect !== '%2F' && redirect !== '/login;redirect=%2F') {
         this.routeSuccess = redirect;
       }
+
+      this.observableLogged();
     });
 
   }

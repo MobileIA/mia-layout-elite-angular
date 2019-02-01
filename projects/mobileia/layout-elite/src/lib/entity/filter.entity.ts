@@ -1,4 +1,4 @@
-export class MIAFilter{
-    public title : number;
-    public asc : number = 1;
+export class MIAFilter {
+    public title: string;
+    public asc = 1;
 }
