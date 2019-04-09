@@ -53,7 +53,8 @@ export class LoginPageComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       const redirect = params.redirect;
-      if (redirect !== '/' && redirect !== '' && redirect !== null && redirect !== '%2F' && redirect !== '/login;redirect=%2F') {
+      if (redirect !== '/' && redirect !== '' && redirect !== null 
+      && redirect !== undefined && redirect !== '%2F' && redirect !== '/login;redirect=%2F') {
         this.routeSuccess = redirect;
       }
 
