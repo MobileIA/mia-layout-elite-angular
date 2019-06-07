@@ -160,7 +160,93 @@ export class AppComponent {
 ```
 
 
+## Como usar Tablas con filtros:
+1. Generar componente:
+```js
+columnTable = [
+    { title: 'ID', filter: 'id', class: 'text-nowrap'},
+    { title: 'Titulo', filter: 'title' },
+    { title: 'Estado', filter: 'status' },
+    { title: 'Acciones', class: 'text-nowrap' }
+  ];
+  tableModel = new MIATableModel();
+  dataItems = new ApiPagination<Category>();
 
+  constructor(
+    private tableService: LayoutTableService,
+    private categoryService: CategoryService
+  ) { }
+
+  ngOnInit() {
+    // Observar cuando se cambian los filtros
+    this.tableService.getFilterObservable().subscribe(filter => {
+      this.onChangeFilter(filter);
+    });
+  }
+
+  loadItems() {
+    this.categoryService.fetchList(this.tableModel).subscribe(data => {
+      this.tableModel.setPagination(data.response.last_page, 10);
+      this.dataItems = data.response;
+    });
+  }
+
+  onChangeFilter(newFilter){
+    // Verificar si se seleccinoo un filtro correcto
+    if (newFilter.title == '' || newFilter.title == undefined) {
+      return;
+    }
+    // Asignamos nuevo filtro
+    this.tableModel.ordType.title = newFilter.title;
+    this.tableModel.ordType.asc = newFilter.asc;
+    // Reiniciar paginas
+    this.tableModel.pageCurrent = 1;
+    // Volver a cargar los eventos
+    this.loadItems();
+  }
+
+  onClickPage(page: number) {
+    this.tableModel.pageCurrent = page;
+    this.loadItems();
+  }
+```
+2. Generar HTML:
+```html
+<mia-layout-elite-page-header [title]="'Categorias'"></mia-layout-elite-page-header>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Listado de Categorias</h4>
+            <h6 class="card-subtitle">Administra todas las categorias aqui:</h6>
+            <div class="table-responsive">
+                <mia-layout-elite-table [th]="columnTable">
+                    <tbody *ngIf="isLoading">
+                        <tr>
+                            <td colspan="8" class="text-center"> <i class="fa fa-spinner"></i> Cargando...</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="!isLoading">
+                        <tr *ngFor="let item of dataItems.data">
+                            <td>{{ item.num }}</td>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.firstname }}</td>
+                            <td>{{ item.lastname }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td>{{ item.discount }}%</td>
+                            <td class="text-nowrap">
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </mia-layout-elite-table>
+            </div>
+            <ngb-pagination class="pagination justify-content-end" [collectionSize]="tableModel.lastPage * tableModel.itemPerPage" [(page)]="tableModel.pageCurrent" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="onClickPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+```
 
 
 
